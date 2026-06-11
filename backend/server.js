@@ -6,10 +6,14 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
+app.get('/', (req, res) => {
+    res.send('CodeCollab Backend is running smoothly!');
+});
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*", // Allows connection from your local frontend file
+    origin: "*", 
     methods: ["GET", "POST"]
   }
 });
@@ -17,15 +21,19 @@ const io = new Server(server, {
 io.on('connection', (socket) => {
   console.log(`Client connected: ${socket.id}`);
 
-  // Join a specific collaboration room
   socket.on('join-room', (roomId) => {
     socket.join(roomId);
     console.log(`User ${socket.id} joined room: ${roomId}`);
   });
 
-  // Listen for code typing and broadcast it to others in the same room
+  // 1. Listen for code typing and broadcast it
   socket.on('code-update', ({ roomId, code }) => {
     socket.to(roomId).emit('code-receive', code);
+  });
+
+  // 2. Listen for terminal execution and broadcast it
+  socket.on('terminal-update', ({ roomId, output, color }) => {
+    socket.to(roomId).emit('terminal-receive', { output, color });
   });
 
   socket.on('disconnect', () => {
