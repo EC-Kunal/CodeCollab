@@ -4,18 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeCollab — Real-Time Editor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h2>CodeCollab Room: <span id="room-id-display">Connecting...</span></h2>
-        </header>
-        <div id="editor-container"></div>
+    <div id="landing-view" class="view-active">
+        <div class="hub-container">
+            <h1 class="brand-title">CODECOLLAB</h1>
+            <p class="brand-subtitle">Real-time collaborative workspace & execution sandbox.</p>
+            
+            <div class="card-grid">
+                <div class="action-card" id="btn-create-room">
+                    <h3>➕ Create Room</h3>
+                    <p>Generate a secure, real-time collaboration environment.</p>
+                </div>
+                
+                <div class="action-card">
+                    <h3>🔗 Join Room</h3>
+                    <div class="input-group">
+                        <input type="text" id="join-room-input" placeholder="Enter Room ID">
+                        <button id="btn-join-room">Join</button>
+                    </div>
+                </div>
+
+                <div class="action-card" id="btn-solo-sandbox">
+                    <h3>💻 Solo Sandbox</h3>
+                    <p>Practice algorithms offline with the local execution engine.</p>
+                </div>
+
+                <div class="action-card" id="btn-arena-mode">
+                    <h3>⚔️ Code Arena</h3>
+                    <p>Compete head-to-head in real-time algorithmic challenges.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <div id="workspace-view" class="view-hidden">
+        <div class="app-container">
+            <header>
+                <div class="header-left">
+                    <button id="btn-leave-room" class="danger-btn">⬅ Leave</button>
+                    <h2>Room: <span id="room-id-display">Connecting...</span> <span id="copy-btn" title="Copy Room ID" style="cursor:pointer; margin-left:10px;">📋</span></h2>
+                </div>
+                <div class="toolbar">
+                    <span class="js-badge" style="background: #f1c40f; color: #000; padding: 10px 10px; border-radius: 5px; font-weight: bold; font-size: 0.8rem;">JS</span>
+                    <button id="run-btn">▶ Run Code</button>
+                    <button id="submit-btn" class="view-hidden" style="background-color: #28a745;">✅ Submit Solution</button>
+                </div>
+            </header>
+            
+            <div class="main-workspace">
+                <div id="arena-panel" class="panel-hidden">
+                    <div class="arena-header">🏆 Live Challenge</div>
+                    <h3 id="challenge-title">Waiting for players...</h3>
+                    <p id="challenge-desc">Invite a friend to start the match.</p>
+                    
+                    <div class="leaderboard">
+                        <h4>Live Status</h4>
+                        <ul id="player-list">
+                            <li>🟢 You (Coding...)</li>
+                        </ul>
+                    </div>
+                    <button id="start-match-btn" class="action-btn">Start Match</button>
+                </div>
+
+                <div class="editor-column">
+                    <div id="editor-container"></div>
+                    <div id="output-container">
+                        <div class="output-header">Output Console <span id="match-status"></span></div>
+                        <pre id="output-screen">Ready to execute...</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="toast-container"></div>
     <script src="app.js"></script>
 </body>
 </html>

@@ -9,56 +9,116 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send('CodeCollab Backend is running smoothly!');
 });
-// --- The Arena Challenge Bank ---
-// --- The Arena Challenge Bank (Upgraded) ---
+
 const challenges = [
   {
       title: "Reverse a String",
       description: "Write a function named reverseString that takes a string as input and returns the string reversed.",
       starterCode: "function reverseString(str) {\n    // Your code here\n    \n}\n",
-      testCall: "reverseString('CodeCollab')", // What we will test
-      expectedOutput: "balloCedoC" // What the answer must be
+      testCases: [
+          { call: "reverseString('hello')", expected: "olleh" },
+          { call: "reverseString('CodeCollab')", expected: "balloCedoC" },
+          { call: "reverseString('racecar')", expected: "racecar" }
+      ]
   },
   {
       title: "Calculate Combinations (nCr)",
       description: "Write a function named calculateCombinations to calculate the binomial coefficient (nCr).",
       starterCode: "function calculateCombinations(n, r) {\n    // Your code here\n    \n}\n",
-      testCall: "calculateCombinations(5, 2)",
-      expectedOutput: 10
+      testCases: [
+          { call: "calculateCombinations(5, 2)", expected: 10 },
+          { call: "calculateCombinations(10, 3)", expected: 120 },
+          { call: "calculateCombinations(6, 6)", expected: 1 }
+      ]
   },
   {
       title: "FizzBuzz Logic",
       description: "Write a function named fizzBuzz that returns 'Fizz' for 3, 'Buzz' for 5, and 'FizzBuzz' for 15.",
       starterCode: "function fizzBuzz(n) {\n    // Your code here\n    \n}\n",
-      testCall: "fizzBuzz(15)",
-      expectedOutput: "FizzBuzz"
+      testCases: [
+          { call: "fizzBuzz(3)", expected: "Fizz" },
+          { call: "fizzBuzz(10)", expected: "Buzz" },
+          { call: "fizzBuzz(30)", expected: "FizzBuzz" },
+          { call: "fizzBuzz(7)", expected: 7 }
+      ]
   },
-  // ... your existing challenges ...
   {
+    title: "Valid Palindrome",
+    description: "Write a function named isPalindrome that takes a lowercase string and returns true if it reads the same forward and backward, and false otherwise.",
+    starterCode: "function isPalindrome(str) {\n    // Your code here\n    \n}\n",
+    testCases: [
+        { call: "isPalindrome('racecar')", expected: true },
+        { call: "isPalindrome('hello')", expected: false },
+        { call: "isPalindrome('level')", expected: true }
+    ]
+},
+{
     title: "Nth Fibonacci Number",
-    description: "Write a function named getFibonacci that returns the Nth number in the Fibonacci sequence. Optimize it to handle larger numbers efficiently.",
-    starterCode: "function getFibonacci(n) {\n    // Your code here\n    \n}\n",
-    testCall: "getFibonacci(12)",
-    expectedOutput: 144
+    description: "Write a function named fibonacci that returns the nth number in the Fibonacci sequence. Assume the sequence starts: 0, 1, 1, 2, 3...",
+    starterCode: "function fibonacci(n) {\n    // Your code here\n    \n}\n",
+    testCases: [
+        { call: "fibonacci(0)", expected: 0 },
+        { call: "fibonacci(5)", expected: 5 },
+        { call: "fibonacci(10)", expected: 55 },
+        { call: "fibonacci(15)", expected: 610 }
+    ]
+},
+{
+    title: "Find the Missing Number",
+    description: "Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, write a function missingNumber that returns the missing number. (Hint: Gaussian sum formula).",
+    starterCode: "function missingNumber(arr) {\n    // Your code here\n    \n}\n",
+    testCases: [
+        { call: "missingNumber([3, 0, 1])", expected: 2 },
+        { call: "missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])", expected: 8 },
+        { call: "missingNumber([0, 1])", expected: 2 }
+    ]
+},
+{
+    title: "Factorial Trailing Zeroes",
+    description: "Write a function trailingZeroes(n) that returns the number of trailing zeroes in n!. Optimize your solution to avoid calculating the massive factorial directly.",
+    starterCode: "function trailingZeroes(n) {\n    // Your code here\n    \n}\n",
+    testCases: [
+        { call: "trailingZeroes(3)", expected: 0 },
+        { call: "trailingZeroes(5)", expected: 1 },
+        { call: "trailingZeroes(100)", expected: 24 }
+    ]
+},
+{
+    title: "Digital Root",
+    description: "Write a function digitalRoot(n) that repeatedly adds all the digits of a non-negative integer until the result has only one digit, and returns it.",
+    starterCode: "function digitalRoot(n) {\n    // Your code here\n    \n}\n",
+    testCases: [
+        { call: "digitalRoot(16)", expected: 7 },
+        { call: "digitalRoot(942)", expected: 6 },
+        { call: "digitalRoot(0)", expected: 0 },
+        { call: "digitalRoot(38)", expected: 2 }
+    ]
 },
 {
     title: "Valid Anagram",
-    description: "Write a function named isAnagram that takes two strings and returns true if they are anagrams of each other, and false otherwise.",
+    description: "Write a function isAnagram that takes two strings and returns true if the second string is an anagram of the first, and false otherwise.",
     starterCode: "function isAnagram(str1, str2) {\n    // Your code here\n    \n}\n",
-    testCall: "isAnagram('listen', 'silent')",
-    expectedOutput: true
+    testCases: [
+        { call: "isAnagram('anagram', 'nagaram')", expected: true },
+        { call: "isAnagram('rat', 'car')", expected: false },
+        { call: "isAnagram('listen', 'silent')", expected: true }
+    ]
 },
 {
-    title: "Sum of Primes",
-    description: "Write a function named sumPrimes that takes an integer n and returns the sum of all prime numbers less than or equal to n.",
-    starterCode: "function sumPrimes(n) {\n    // Your code here\n    \n}\n",
-    testCall: "sumPrimes(10)",
-    expectedOutput: 17 // (2 + 3 + 5 + 7)
+    title: "Count Vowels",
+    description: "Write a function countVowels that returns the number of vowels (a, e, i, o, u) in a given string. Assume the input is always lowercase.",
+    starterCode: "function countVowels(str) {\n    // Your code here\n    \n}\n",
+    testCases: [
+        { call: "countVowels('hello')", expected: 2 },
+        { call: "countVowels('codecollab')", expected: 4 },
+        { call: "countVowels('xyz')", expected: 0 },
+        { call: "countVowels('education')", expected: 5 }
+    ]
 }
 ];
 
 const server = http.createServer(app);
-const io = new Server(server, {
+const io = require('socket.io')(server, {
   cors: {
     origin: "*", 
     methods: ["GET", "POST"]
@@ -72,17 +132,14 @@ io.on('connection', (socket) => {
     socket.join(roomId);
     console.log(`User ${socket.id} joined room: ${roomId}`);
 
-    // Count how many users are in this specific room and broadcast it
     const roomSize = io.sockets.adapter.rooms.get(roomId).size;
     io.to(roomId).emit('presence-update', roomSize);
   });
 
-  // 1. Listen for code typing and broadcast it
   socket.on('code-update', ({ roomId, code }) => {
     socket.to(roomId).emit('code-receive', code);
   });
 
-  // 2. Listen for terminal execution and broadcast it
   socket.on('terminal-update', ({ roomId, output, color }) => {
     socket.to(roomId).emit('terminal-receive', { output, color });
   });
@@ -92,31 +149,24 @@ io.on('connection', (socket) => {
       if (roomId !== socket.id) {
         const room = io.sockets.adapter.rooms.get(roomId);
         if (room) {
-          // Broadcast the new room size (current size minus the 1 person leaving)
           io.to(roomId).emit('presence-update', room.size - 1);
         }
       }
     }
   });
 
-  // 3. Listen for Arena Match Start
   socket.on('start-match', (roomId) => {
-    // Pick a random challenge from the bank
     const randomChallenge = challenges[Math.floor(Math.random() * challenges.length)];
     
-    // Broadcast the challenge to EVERYONE in the room (including the person who clicked it)
     io.to(roomId).emit('match-started', randomChallenge);
   });
 
-  // 4. Listen for a Winner
   socket.on('player-won', (roomId) => {
     io.to(roomId).emit('match-over', socket.id);
   });
 
-  // 5. Listen for Arena Code Progress (Character Count)
-  socket.on('arena-progress', ({ roomId, length }) => {
-    // Broadcast the length to the opponent, NOT the code itself
-    socket.to(roomId).emit('opponent-progress', length);
+  socket.on('test-case-passed', ({ roomId, passedCount }) => {
+    socket.to(roomId).emit('opponent-progress', passedCount);
   });
 });
 
