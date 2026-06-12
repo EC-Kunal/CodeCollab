@@ -1,5 +1,5 @@
 // 1. Setup & Globals
-const socket = io("http://localhost:3001");
+const socket = io("https://codecollab-d5pn.onrender.com/");
 let currentRoomId = null; 
 let editor; 
 let isReceiving = false; 
