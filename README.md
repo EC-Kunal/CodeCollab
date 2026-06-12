@@ -10,10 +10,10 @@ CodeCollab is a distributed, real-time algorithmic competition platform. Enginee
 * **Dynamic Gamification Layer:** Implements asynchronous progress tracking. Spectators see real-time scalable progress badges (e.g., `[2/3 ⚡]`) and debounced toast notifications.
 
 ## 💻 Tech Stack
-* **Frontend:** Vanilla JavaScript (SPA Routing), HTML5, CSS3 (CSS Grid, Glassmorphism UI)
+* **Frontend:** Vanilla JavaScript (SPA Routing), HTML5, CSS3
 * **Backend:** Node.js, Express.js
 * **Networking:** WebSockets (Socket.io)
 
 ## 🔗 Live Demo
-* **Frontend:** URL
-* **Backend:** Hosted on Render (Note: Free tier may take 30s to cold-start).
+* **Frontend:** https://cc-algorithmic.netlify.app/
+* **Backend:** https://codecollab-d5pn.onrender.com/
